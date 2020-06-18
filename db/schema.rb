@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_06_18_212320) do
   end
 
   create_table "petitions", force: :cascade do |t|
+    t.integer "author_id"
     t.string "title"
     t.text "description"
     t.integer "goal"
