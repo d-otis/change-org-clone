@@ -4,6 +4,10 @@
 ```/petitions/new``` calls new petition form
 ```/petitions/:id/edit``` calls edit petition form
 ```/petitions``` calls petition index
+- only petition_author can edit their petition
+- can view petitions#index but cannot sign anything unless logged_in?
+- can view petitions in a namespaced way under user id URL
+- if author deletes petition it destroys dependents
 
 
 
