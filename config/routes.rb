@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :petitions
   resources :users
 
+  root 'petitions#index'
+
 end
