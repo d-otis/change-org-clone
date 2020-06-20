@@ -18,25 +18,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= user_path(current_user) %>">Account</a>
-          </li>
-          <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Petitions
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <%= link_to "New Petition", new_petition_path, :class => 'dropdown-item' %>
-                    <a class="dropdown-item" href="#">My Petitions</a>
-                    <%= link_to "All Petitions", petitions_path, :class => 'dropdown-item' %>
-                  </div>
-                </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
+          
+          <%= render 'sessions/dynamic_menu' %>
+          
         </ul>
       </div>
     </nav>
