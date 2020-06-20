@@ -21,3 +21,5 @@ If you are an artist, arts administrator or supporter of the arts in Philadelphi
 Nearly half of The Philadelphia Cultural Fund’s grant recipients operate on an annual budget of $150,000 or less. The defunding of The Philadelphia Cultural Fund will disproportionately affect small organizations, many of which are vital service organizations, caring for and attending to our most vulnerable populations, and are run by marginalized artists: people of color, women, and the LGBTQI+ community. These neighborhood-focused, grassroots, growing organizations often don’t qualify for private funding aimed at major institutions and largely depend on volunteer-labor and contributions from individuals in order to survive. If our artists, volunteers, members, and individual contributors are hurting, so are we! 
 
 We believe there are other options for balancing the city’s budget, and Philadelphia’s City Controller does too! ", goal: 3000)
+
+danny = User.create(name: "Danny Orendorff", email: "dan.orendorff@gmail.com")
