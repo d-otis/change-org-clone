@@ -1,2 +1,0 @@
-class PetitionSigner < ApplicationRecord
-end
