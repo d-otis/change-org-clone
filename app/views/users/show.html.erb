@@ -1,0 +1,21 @@
+<div class="row">
+	<h1><%= @user.name %> : Dashboard</h1>
+</div>
+<div class="row">
+	<div class="col-sm-3">
+		<h2>Account Info</h2>
+		<ul class="list-group">
+		  <li class="list-group-item">Email: <%= @user.email %></li>
+		  <li class="list-group-item"><%= link_to "edit", edit_user_path(@user) %></li>
+		</ul>
+	</div>
+	<div class="col-sm-9">
+		<h2>My Petitions</h2>
+		<div class="list-group">
+			<% @user.authored_petitions.each do |p| %>
+		  <%= link_to p.title, petition_path(p), :class => 'list-group-item list-group-item-action' %>
+		  <% end %>
+		</div>
+	</div>
+
+</div>
