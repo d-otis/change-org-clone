@@ -8,6 +8,7 @@
 		<%= label_tag "signature_anonymous", "Display my name and comment on this petition", :class_name => 'form-check-label' %>
 	</div>
 	<%= f.hidden_field :user_id, :value => current_user.id %>
+	<%= f.hidden_field :petition_id, :value => @petition.id %>
 		
 	<%= f.submit "Sign this petition", :class=> 'btn btn-secondary' %>
 <% end %>
