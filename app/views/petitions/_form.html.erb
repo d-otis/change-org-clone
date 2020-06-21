@@ -1,4 +1,4 @@
-<h2>Create New Petition</h2>
+
 <%= form_for @petition do |f| %>
 	<div class="form-group">
 		<%= f.label :title %>
@@ -6,7 +6,7 @@
 	</div>
 	<div class="form-group">
 		<%= f.label :description %>
-		<%= f.text_area :description, :class => 'form-control' %>
+		<%= f.text_area :description, :class => 'form-control', :rows => 15 %>
 	</div>
 	<div class="form-group">
 		<%= f.label :goal, "Signature Goal" %>
