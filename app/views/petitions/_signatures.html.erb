@@ -1,0 +1,9 @@
+<% if @petition.signatures.count == 0 %>
+	<small>Be the first to sign!</small>
+<% else %>
+	<ul>
+		<% @petition.signatures.each do |s| %>
+			<li><strong><%= s.user.name %></strong>	signed this petition on <%= display_date(s.created_at )%></li>
+		<% end %>
+	</ul>
+<% end %>
