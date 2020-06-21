@@ -7,4 +7,10 @@ class Petition < ApplicationRecord
 			 :through => :signatures,
 			 :source => :user,
 			 :foreign_key => :user_id
+
+	accepts_nested_attributes_for :signatures
+
+	def author_name
+		self.author.name
+	end
 end
