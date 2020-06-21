@@ -2,8 +2,8 @@
 	<small>Be the first to sign!</small>
 <% else %>
 	<ul>
-		<% @petition.signatures.each do |s| %>
-			<li class="text-muted"><strong><%= s.user.name %></strong>	signed this petition on <%= display_date(s.created_at )%></li>
+		<% @petition.signatures.each do |signature| %>
+			<li class="text-muted"><strong><%= display_signer_name(signature) %></strong>	signed this petition on <%= display_date(signature.created_at) %></li>
 		<% end %>
 	</ul>
 <% end %>

@@ -1,6 +1,6 @@
 module PetitionsHelper
-	def display_date(date_time)
-		date_time.strftime("%b %e, %l:%M %p")
+	def display_date(date)
+		date.strftime("%b %e, %l:%M %p")
 	end
 
 	def display_signer_name(signature)
