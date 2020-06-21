@@ -1,1 +1,40 @@
-<h1><%= @petition.title %></h1>
+<div class="row mb-3">
+	<div class="col-sm-12">
+		<h1 class="petition-title"><%= @petition.title %></h1>
+		<small class="text-muted"><%= @petition.author_name %> started this petition on <%= display_date(@petition.created_at) %></small>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-6 petition-desc">
+		<p><%= simple_format(@petition.description, {}, :sanitize => true) %></p>
+	</div>
+	<div class="col-sm-6">
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Add Your Signature</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Signatures:</h3>
+				<% if @petition.signatures.count == 0 %>
+					<small>Be the first to sign!</small>
+				<% else %>
+					<ul>
+						<% @petition.signatures.each do |s| %>
+							<li><strong><%= s.user.name %></strong>	signed this petition on <%= display_date(s.created_at )%></li>
+						<% end %>
+					</ul>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-sm-6">
+		<%= link_to "edit petition", edit_petition_path(@petition) %>
+	</div>
+</div>
