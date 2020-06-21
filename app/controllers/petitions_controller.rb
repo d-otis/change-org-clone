@@ -7,12 +7,15 @@ class PetitionsController < ApplicationController
 	end
 
 	def show
+		@signature = Signature.new
 	end
 
 	def edit
 	end
 
 	def update
+		@petition.update(petition_params)
+		redirect_to petition_path(@petition), notice: "You have updated your petition!"
 	end
 
 	def new
