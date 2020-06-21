@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :petitions
   resources :users
+  resources :signatures
 
   root 'petitions#index'
 
