@@ -12,20 +12,13 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<h3>Add Your Signature</h3>
+				<%= render 'signature_form' %>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row mt-3">
 			<div class="col-sm-12">
 				<h3>Signatures:</h3>
-				<% if @petition.signatures.count == 0 %>
-					<small>Be the first to sign!</small>
-				<% else %>
-					<ul>
-						<% @petition.signatures.each do |s| %>
-							<li><strong><%= s.user.name %></strong>	signed this petition on <%= display_date(s.created_at )%></li>
-						<% end %>
-					</ul>
-				<% end %>
+				<%= render 'signatures' %>
 			</div>
 		</div>
 	</div>
