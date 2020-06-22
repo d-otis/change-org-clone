@@ -23,6 +23,6 @@ class Petition < ApplicationRecord
 	end
 
 	def signatures_desc
-		self.signatures.order(:created_at => :desc)
+		self.signatures.order(:created_at => :desc).first(5)
 	end
 end
