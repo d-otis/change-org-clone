@@ -5,4 +5,13 @@ class Signature < ApplicationRecord
 	def user_name
 		self.user.name
 	end
+
+	# FOR ONE SIGNATURE PER PETITION VALIDATION
+	# uid = 2
+	# pid = 1
+	# if Signature.where("user_id = ? and petition_id = ?", uid, pid) == 1
+	# 	DONT render signature form 
+	# end
+	# ORRRRR
+	# render signature_form unless has_signed?
 end
