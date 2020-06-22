@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to user_path(current_user) if current_user
   end
 
   def create
@@ -13,8 +14,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-  	reset_session
-  	redirect_to "/signin"
+      reset_session
+      redirect_to "/signin"
   end
 
   private
