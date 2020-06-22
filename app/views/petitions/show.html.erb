@@ -1,17 +1,19 @@
-<div class="row mb-3">
+<div class="row mb-3"> <!-- Title and Meta Row -->
 	<div class="col-sm-12">
 		<h1 class="petition-title"><%= @petition.title %></h1>
 		<small class="text-muted"><%= @petition.author_name %> started this petition on <%= display_date(@petition.created_at) %></small>
 	</div>
-</div>
-<div class="row">
+</div> <!-- end title and meta row -->
+<div class="row"> <!-- petition description and signature form -->
 	<div class="col-sm-8 petition-desc">
 		<p><%= simple_format(@petition.description, {}, :sanitize => true) %></p>
 	</div>
 	<div class="col-sm-4">
 		<div class="row">
 			<div class="col-sm-12">
-				<h3>Add Your Signature</h3>
+				<h3>Signature Count: <%= @petition.signature_count %> of <%= @petition.goal %></h3>
+					<%= render partial: 'progress_bar', locals: {percent: @petition.goal_percent} %>
+				<h4>Add Your Signature</h4>
 				<%= render 'signature_form' %>
 			</div>
 		</div>
@@ -22,11 +24,11 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> <!-- END petition description and signature form -->
 
 
 
-<div class="row">
+<div class="row mb-5">
 	<div class="col-sm-6">
 		<%= link_to "edit petition", edit_petition_path(@petition) %>
 	</div>
