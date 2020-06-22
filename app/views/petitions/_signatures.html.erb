@@ -1,9 +1,21 @@
 <% if @petition.signatures.count == 0 %>
 	<small>Be the first to sign!</small>
 <% else %>
-	<ul>
-		<% @petition.signatures_desc.each do |signature| %>
-			<li class="text-muted"><strong><%= display_signer_name(signature) %></strong>	signed this petition on <%= display_date(signature.created_at) %></li>
-		<% end %>
-	</ul>
+	<% @petition.signatures_desc.each do |signature| %>
+		<div class="card mb-2">
+			<div class="card-body">
+				<blockquote class="blockquote mb-0">
+					<% if signature.message %>
+						<p class="font-italic">"<%= display_message(signature) %>"</p>
+					<% end %>
+					
+					<footer class="blockquote-footer"><%= display_signer_name(signature) %></footer>
+				</blockquote>
+			</div>
+		</div>
+		<!-- <li class="text-muted"><strong><%= display_signer_name(signature) %></strong>	signed this petition on <%= display_date(signature.created_at) %></li> -->
+	<% end %>
 <% end %>
+
+
+
