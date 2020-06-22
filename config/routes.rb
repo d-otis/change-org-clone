@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :users
   resources :signatures
 
-  root 'petitions#index'
+  root 'sessions#new'
 
 end
