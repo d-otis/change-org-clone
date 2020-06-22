@@ -13,4 +13,16 @@ class Petition < ApplicationRecord
 	def author_name
 		self.author.name
 	end
+
+	def goal_percent
+		((self.signatures.count.to_f / self.goal.to_f) * 100).round
+	end
+
+	def signature_count
+		self.signatures.count
+	end
+
+	def signatures_desc
+		self.signatures.order(:created_at => :desc)
+	end
 end
