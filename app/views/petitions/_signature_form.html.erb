@@ -4,7 +4,7 @@
 		<%= f.text_area :message, :class => "form-control", :placeholder => "I'm signing because... (optional)" %>
 	</div>
 	<div class="form-group form-check">
-		<%= check_box("signature", "anonymous", :class => 'form-check-input', :checked => true) %>
+		<%= check_box("signature", "anonymous", {:class => 'form-check-input', :checked => true}, "false", "true") %>
 		<%= label_tag "signature_anonymous", "Display my name and comment on this petition", :class_name => 'form-check-label' %>
 	</div>
 	<%= f.hidden_field :user_id, :value => current_user.id %>
