@@ -1,5 +1,8 @@
 <div class="row mb-3"> <!-- Title and Meta Row -->
-	<div class="col-sm-12">
+	<div class="col">
+		<% if !logged_in? %>
+		<div class="alert alert-primary text-center" role="alert">Must be <%= link_to 'logged in', signin_path %> to sign petition.</div>
+		<% end %>
 		<h1 class="petition-title"><%= @petition.title %></h1>
 		<small class="text-muted"><%= @petition.author_name %> started this petition on <%= display_date(@petition.created_at) %></small>
 	</div>
@@ -10,16 +13,19 @@
 	</div>
 	<div class="col-sm-4">
 		<div class="row">
-			<div class="col-sm-12">
-				<h3>Signature Count: <%= @petition.signature_count %> of <%= @petition.goal %></h3>
+			<div class="col">
+				<% if logged_in? %>
+					<%= render 'signature_confirmation' if has_signed?(@petition) %>
+				<% end %>
+				<h3>Signature Goal: <%= @petition.signature_count %> of <%= @petition.goal %></h3>
 					<%= render partial: 'progress_bar', locals: {percent: @petition.goal_percent} %>
-				<h4>Add Your Signature</h4>
-				<%= render 'signature_form' %>
+				<% if logged_in? %>
+					<%= render 'signature_form' unless has_signed?(@petition) %>
+				<% end %>
 			</div>
 		</div>
 		<div class="row mt-3">
-			<div class="col-sm-12">
-				<h3>Signatures:</h3>
+			<div class="col">
 				<%= render 'signatures' %>
 			</div>
 		</div>
@@ -27,9 +33,5 @@
 </div> <!-- END petition description and signature form -->
 
 
+<%= render 'edit_link' if is_author?(@petition) %>
 
-<div class="row mb-5">
-	<div class="col-sm-6">
-		<%= link_to "edit petition", edit_petition_path(@petition) %>
-	</div>
-</div>
