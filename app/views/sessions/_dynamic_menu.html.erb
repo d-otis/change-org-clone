@@ -1,25 +1,30 @@
 <% if logged_in? %>
-  <li class="nav-item">
-    <a class="nav-link" href="<%= user_path(current_user) if logged_in? %>">Account</a>
-  </li>
-  <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Petitions
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to "New Petition", new_petition_path, :class => 'dropdown-item' %>
-            <%= link_to "My Petitions", user_path(current_user), :class => 'dropdown-item' %>
-            <%= link_to "All Petitions", petitions_path, :class => 'dropdown-item' %>
-          </div>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/logout">Logout</a>
-  </li>
+    <li class="nav-item">
+      <a class="nav-link" href="<%= user_path(current_user) if logged_in? %>">Account</a>
+    </li>
+    <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Petitions
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "New Petition", new_petition_path, :class => 'dropdown-item' %>
+              <%= link_to "My Petitions", user_path(current_user), :class => 'dropdown-item' %>
+              <%= link_to "All Petitions", petitions_path, :class => 'dropdown-item' %>
+            </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
   <% else %>
-  <li class="nav-item">
-    <a class="nav-link" href="/signin">Sign In</a>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Petitions", petitions_path, :class => 'nav-link' %>
-  </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/signin">Sign In</a>
+    </li>
+    
+    <li class="nav-item">
+      <%= link_to "Petitions", petitions_path, :class => 'nav-link' %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to "Sign up", new_user_path, :class => 'nav-link' %>
+    </li>
 <% end %>
