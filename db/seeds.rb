@@ -9,9 +9,9 @@
 # ++++++++++++++++
 # +SEED VARIABLES+
 # ++++++++++++++++
-num_users = 10
-num_petitions = 20
-num_signatures = 10
+num_users = 20
+num_petitions = 50
+num_signatures = 70
 
 def mega_seed(users, petitions, signatures)
 	puts ""
