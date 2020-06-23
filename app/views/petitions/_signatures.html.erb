@@ -10,7 +10,7 @@
 					<% if signature.message %>
 						<p class="font-italic">"<%= display_message(signature) %>"</p>
 					<% end %>
-					<footer class="blockquote-footer"><%= display_signer_name(signature) %> <small class="font-weight-light"> on <%= display_date(signature.created_at) %></small></footer>
+					<footer class="blockquote-footer"><i class="far fa-user-circle"></i> <%= display_signer_name(signature) %> <small class="font-weight-light"> on <%= display_date(signature.created_at) %></small></footer>
 				</blockquote>
 			</div>
 		</div>
