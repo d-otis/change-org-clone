@@ -26,6 +26,10 @@ class Petition < ApplicationRecord
 		self.signatures.order(:created_at => :desc).first(5)
 	end
 
+	def signature_need
+		self.goal - self.signature_count
+	end
+
 	def excerpt
 		self.description.split(". ")[0..2].join + " [...]"
 	end
