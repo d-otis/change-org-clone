@@ -35,7 +35,8 @@ class PetitionsController < ApplicationController
 	end
 
 	def destroy
-		binding.pry
+		@petition.destroy
+		redirect_to user_path(current_user), notice: "You have delete your petition."
 	end
 
 	private
