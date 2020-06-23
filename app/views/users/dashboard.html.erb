@@ -14,22 +14,20 @@
 			<div class="col">
 				<h2>My Petitions</h2>
 				<div class="list-group">
-					<% @user.authored_petitions.each do |p| %>
-				  <a href="<%= petition_path(p) %>" class="list-group-item list-group-item-action"><%= p.title %> &mdash; <%= p.signature_count %> Supporters</a>
-				  <% end %>
+					 <%= render partial: 'petitions/details', collection: @user.authored_petitions, :as => :petition %>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
 				<h2>I've Supported...</h2>
-				<% @user.signatures.each do |s| %>
-					<a href="<%= petition_path(s.petition) %>" class="list-group-item list-group-item-action"><%= s.petition.title %> &mdash; <%= s.petition.signature_count %> Supporters</a>
-				<% end %>
+				<div class="list-group">
+					<%= render partial: 'signatures/details', collection: @user.signatures, :as => :signature %>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	
 </div>
-<%= console %>
+<%# console %>
