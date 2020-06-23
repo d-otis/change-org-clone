@@ -17,9 +17,9 @@
 	<div class="col-sm-4">
 		<div class="row">
 			<div class="col">
-				<% if logged_in? %>
-					<%= render 'signatures/confirmation' if has_signed?(@petition) %>
-				<% end %>
+				<%# if logged_in? %>
+					<%= render 'signatures/confirmation' if has_signed?(@petition) && logged_in? %>
+				<%# end %>
 				<h3>Signature Goal: <%= @petition.signature_count %> of <%= @petition.goal %></h3>
 					<%= render partial: 'signatures/progress_bar', locals: {percent: @petition.goal_percent} %>
 				<% if logged_in? %>
