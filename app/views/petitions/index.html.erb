@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col text-center">
+		<h1>Browse Petitions</h1>
+	</div>
+</div>
+<div class="row">
+	<!-- <div class="col"> -->
+	<div class="card-columns">
+		<ol>
+			<% @petitions.each do |p| %>
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title"><%= p.title %></h4>
+					<p class="card-text">
+						<%= p.excerpt %>
+					</p>
+					<p class="card-text"><small class="text-muted"><%= p.author_name %> &mdash; <%= display_date(p.created_at) %></small></p>
+					<%= link_to "Sign this Petition!", petition_path(p), :class => "btn btn-danger" %>
+				</div>
+			</div>
+			<% end %>
+		</ol>
+	</div>
+	<!-- </div> -->
+</div>
