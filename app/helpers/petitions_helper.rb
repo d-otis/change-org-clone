@@ -22,4 +22,9 @@ module PetitionsHelper
 	def is_author?(petition)
 		petition.author == current_user
 	end
+
+	def display_excerpt(petition)
+		# needs work
+		petition.excerpt << (link_to("[read more]", petition_path(petition)))
+	end
 end
