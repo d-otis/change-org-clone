@@ -25,6 +25,10 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def dashboard
+    @user = current_user
+  end
+
   def update
     @user.update(user_params)
     redirect_to user_path(@user)
