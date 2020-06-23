@@ -6,20 +6,74 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-foley = User.create(name: "Dan Foley", email: "dan@dan-foley.com")
+# ++++++++++++++++
+# +SEED VARIABLES+
+# ++++++++++++++++
+num_users = 10
+num_petitions = 20
+num_signatures = 10
 
-foley.authored_petitions.create(title: "No To Zero For The Arts", description: "No To Zero for the Arts believes that a People’s Bail Out in Philadelphia *IS* an arts bailout. 
+def mega_seed(users, petitions, signatures)
+	puts ""
+	puts "Beginning Seed..."
+	puts ""
 
-Unlike virtually every other major American city’s response to COVID-19, Philadelphia is proposing to raise taxes on working and middle-class people while also decimiating funding for the arts and culture sector as part of the 2021 budget – calling for the elimination of The Philadelphia Cultural Fund and The Office of Arts, Culture and Creative Economy (OACCE), which also provides considerable operating funds to The African American Museum in Philadelphia. Simultaneously, the State of Pennsylvania has rescinded all Pennsylvania Council on the Arts grants to arts and cultural organizations that had already been awarded. 
+	make_users(users)
+	make_petitions(petitions)
+	make_signatures(signatures)
+end
 
-The stability of our arts and culture organizations are inextricably linked to the stability of the people of Philadelphia, who would be unduly burdened by tax-hikes and slashes to housing programs in the proposed austerity budget while corporations, real estate developers, and mega-nonprofits continue to receive major tax breaks and abatements!
 
-Demand a Philly City Budget where #BlackLivesMatter! The proposed budget would increase Philadelphia Police Department funding by at least $14 million while cutting funding for public health, for education, for homeless services, for parks, and for arts and culture. We encourage you to reject that plan and donate to The Philadelphia Community Bail Fund!
+def make_users(num)
+	num.times do
+		u = User.create(
+			:name => Faker::Name.unique.name,
+			:email => Faker::Internet.unique.email,
+			:password => '1234')
+		puts "#{u.id}. #{u.name} has joined"
+	end
 
-If you are an artist, arts administrator or supporter of the arts in Philadelphia, we also encourage you to read, sign, and share the Open Letter on behalf of Philly Arts for Black Lives!
+	puts ""
+	puts "Created #{num} users..."
+	puts ""
+end
 
-Nearly half of The Philadelphia Cultural Fund’s grant recipients operate on an annual budget of $150,000 or less. The defunding of The Philadelphia Cultural Fund will disproportionately affect small organizations, many of which are vital service organizations, caring for and attending to our most vulnerable populations, and are run by marginalized artists: people of color, women, and the LGBTQI+ community. These neighborhood-focused, grassroots, growing organizations often don’t qualify for private funding aimed at major institutions and largely depend on volunteer-labor and contributions from individuals in order to survive. If our artists, volunteers, members, and individual contributors are hurting, so are we! 
+def make_petitions(num)
+	random_users = (1..User.count).sort{ rand() - 0.5 }
 
-We believe there are other options for balancing the city’s budget, and Philadelphia’s City Controller does too! ", goal: 3000)
+	random_users.each do |p|
+		Petition.create(
+			:title => Faker::TvShows::RuPaul.quote,
+			:description => LoremIpsumText::multiple_para(rand(10..30)).join("\r\n\r\n"),
+			:author_id => p,
+			:goal => rand(12..35))
+	end
 
-danny = User.create(name: "Danny Orendorff", email: "dan.orendorff@gmail.com")
+	puts ""
+	puts "Created #{num} petitions..."
+	puts ""
+end
+
+
+
+def make_signatures(num)
+
+	num.times do
+		petition = Petition.find(rand(1..Petition.count))
+		# Need to randomly select a user and only make signature join if their user object is already in the join
+		user = User.find(rand(1..User.count))
+		# query DB for Signature where user_id and petition_id
+		if Signature.where(petition: petition, user: user).empty?
+			petition.signatures.create(
+				:user => user, 
+				:message => Faker::Lorem.sentences(number: rand(3..10)).join(" "), 
+				:anonymous => rand(0..1))
+		end
+	end
+
+	puts ""
+	puts "Created #{num} signatures..."
+	puts ""
+end
+
+mega_seed(num_users, num_petitions, num_signatures)
