@@ -25,4 +25,8 @@ class Petition < ApplicationRecord
 	def signatures_desc
 		self.signatures.order(:created_at => :desc).first(5)
 	end
+
+	def excerpt
+		self.description.split(". ")[0..2].join + " [...]"
+	end
 end
