@@ -21,7 +21,7 @@
 				<%= render 'signatures/confirmation' if has_signed?(@petition) && logged_in? %>
 			
 				<h3>Signature Goal: <%= @petition.signature_count %> of <%= @petition.goal %></h3>
-				
+
 				<%= render partial: 'signatures/progress_bar', locals: {percent: @petition.goal_percent} %>
 			
 				<%= render 'signatures/form' unless has_signed?(@petition) && logged_in? %>
@@ -38,5 +38,5 @@
 </div> <!-- END petition description and signature form -->
 
 
-<%= render 'edit_link' if is_author?(@petition) %>
+<%= render 'edit_links' if is_author?(@petition) %>
 

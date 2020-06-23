@@ -36,7 +36,7 @@ class PetitionsController < ApplicationController
 
 	def destroy
 		@petition.destroy
-		redirect_to user_path(current_user), notice: "You have delete your petition."
+		redirect_to dashboard_path, notice: "You have deleted your petition."
 	end
 
 	private
