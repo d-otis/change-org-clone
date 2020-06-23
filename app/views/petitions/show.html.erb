@@ -4,7 +4,7 @@
 		<div class="alert alert-primary text-center" role="alert">Must be <%= link_to 'logged in', signin_path %> to sign petition.</div>
 		<% end %>
 		<h1 class="petition-title"><%= @petition.title %></h1>
-		<small class="text-muted"><%= @petition.author_name %> started this petition on <%= display_date(@petition.created_at) %></small>
+		<i class="far fa-user-circle"></i><small class="text-muted"> <%= @petition.author_name %> started this petition on <%= display_date(@petition.created_at) %></small>
 	</div>
 </div> <!-- end title and meta row -->
 <div class="row"> <!-- petition description and signature form -->
