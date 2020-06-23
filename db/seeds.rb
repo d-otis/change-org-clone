@@ -80,5 +80,5 @@ end
 mega_seed(num_users, num_petitions, num_signatures)
 
 pookie = User.create(name: "Pookie McGillicutty", email: "pookie@gmail.com", password: "1234")
-dan = User.create(name: "Dan Foley", email: "dan@dan-foley.com", password: "1234")
+dan = User.create(name: "Dan Foley", email: "dan@dan-foley.biz", password: "1234")
 pookie.authored_petitions.create(title: "End Scooter McBooberson’s Reign of Terror", description: "She stinks!", goal: 5)
