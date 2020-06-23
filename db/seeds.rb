@@ -43,7 +43,7 @@ def make_petitions(num)
 
 	random_users.each do |p|
 		Petition.create(
-			:title => Faker::TvShows::RuPaul.quote,
+			:title => Faker::TvShows::TwinPeaks.unique.quote,
 			:description => LoremIpsumText::multiple_para(rand(10..30)).join("\r\n\r\n"),
 			:author_id => p,
 			:goal => rand(12..24))
@@ -76,8 +76,9 @@ def make_signatures(num)
 	puts ""
 end
 
+
+mega_seed(num_users, num_petitions, num_signatures)
+
 pookie = User.create(name: "Pookie McGillicutty", email: "pookie@gmail.com", password: "1234")
 dan = User.create(name: "Dan Foley", email: "dan@dan-foley.com", password: "1234")
 pookie.authored_petitions.create(title: "End Scooter McBooberson’s Reign of Terror", description: "She stinks!", goal: 5)
-
-mega_seed(num_users, num_petitions, num_signatures)
