@@ -13,6 +13,11 @@
 					<footer class="blockquote-footer"><i class="far fa-user-circle"></i> <%= link_to signature.user_name, user_path(signature.user), :class => 'badge badge-pill badge-danger' %> <small class="font-weight-light"> on <%= display_date(signature.created_at) %></small></footer>
 				</blockquote>
 			</div>
+			<% if current_user == signature.user %>
+				<div class="card-body text-center mt-0">
+					<%= button_to "Remove Signature", signature, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger text-light' %>
+				</div>
+			<% end %>
 		</div>
 	<% end %>
 <% end %>
