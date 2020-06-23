@@ -16,7 +16,7 @@
 						<%= p.excerpt %>
 					</p>
 					<p class="card-text"><small class="text-muted">
-							<%= p.author_name %> &mdash;
+							<%= link_to p.author_name, user_path(p.author), :class => 'badge badge-pill badge-danger' %> &mdash;
 							<%= display_date(p.created_at) %></small></p>
 				</div>
 					<ul class="list-group list-group-flush">

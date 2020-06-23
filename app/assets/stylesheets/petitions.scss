@@ -3,7 +3,14 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
-.petition-desc, form.edit_petition {
+.petition-desc, form.edit_petition, form.new_petition {
 	font-family: 'Karla', sans-serif;
 }
 
+.author-link {
+	color: #ec2c22;
+}
+
+[class*="-danger"] {
+	background-color: #ec2c22;
+}
