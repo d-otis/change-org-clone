@@ -1,6 +1,7 @@
 class PetitionsController < ApplicationController
 	before_action :set_petition, only: [:show, :edit, :update, :destroy]
 	before_action :require_login
+	before_action :require_auth, only: [:edit, :destroy, :update]
 	skip_before_action :require_login, only: [:index, :show]
 
 	def index
@@ -34,6 +35,7 @@ class PetitionsController < ApplicationController
 	end
 
 	def destroy
+		binding.pry
 	end
 
 	private
@@ -43,10 +45,14 @@ class PetitionsController < ApplicationController
 	end
 
 	def require_login
-		redirect_to "/signin", notice: "You must be signed in to do that." unless session[:user_id]
+		redirect_to "/signin", notice: "You must be signed in to do that." unless logged_in?
 	end
 
 	def set_petition
 		@petition = Petition.find_by(id: params[:id])
+	end
+
+	def require_auth
+		redirect_to petition_path(@petition), notice: "You can only edit your own petitions!" unless @petition.author == current_user
 	end
 end
