@@ -1,7 +1,7 @@
 <% if logged_in? %>
 
 		<li class="nav-item">
-			<a class="nav-link" href="<%= user_path(current_user) if logged_in? %>">Account</a>
+			<a class="nav-link" href="<%= dashboard_path if logged_in? %>">Account</a>
 		</li>
 		<li class="nav-item">
 			<%= link_to "Start a Petition", new_petition_path, :class => 'nav-link' %>
