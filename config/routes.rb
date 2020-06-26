@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :petitions
+  resources :petitions do
+    resources :signatures, only: [:index]
+  end
 
   resources :signatures, only: [:create, :destroy]
 
