@@ -4,7 +4,7 @@
 			<a class="nav-link" href="<%= dashboard_path if logged_in? %>">Dashboard</a>
 		</li>
 		<li class="nav-item">
-			<%= link_to "Start a Petition", new_petition_path, :class => 'nav-link' %>
+			<%= link_to "Start a Petition", new_user_petition_path(current_user), :class => 'nav-link' %>
 		</li>
 		<li class="nav-item">
 			<%= link_to "My Petitions", dashboard_path, :class => 'nav-link' %>
