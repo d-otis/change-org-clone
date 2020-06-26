@@ -1,7 +1,8 @@
 class User < ApplicationRecord
 	has_many :authored_petitions, 
 			 :class_name => "Petition", 
-			 :foreign_key => :author_id
+			 :foreign_key => :author_id,
+			 :dependent => :destroy
 	has_many :signatures
 	has_secure_password
 	validates :name, :presence => true
