@@ -18,15 +18,17 @@ class PetitionsController < ApplicationController
 	end
 
 	def show
-		# check if the user exists
-		# check if the petition exists and that it belongs to user
-		@user = User.find_by(id: params[:user_id])
-		if @user.nil?
-			redirect_to petitions_path, notice: "User not found."
-		elsif @petition.nil? || @petition.author != @user
-			redirect_to petitions_path, notice: "Petition Not Found"
+		# check if the user exists if :user_id present => else send to index with error
+		# if user exists check if the petition exists and that it belongs to that user
+		# if user isn't in the params just send them to the vanilla show page
+		@signature = Signature.new
+		if params[:user_id].nil?
 		else
-			@signature = Signature.new
+			@author = User.find_by(id: params[:user_id])
+			return redirect_to petitions_path, notice: "User not found!" if @author.nil?
+
+			@petition = @author.authored_petitions.find_by(id: params[:id])
+			return redirect_to petitions_path, notice: "Petition not found" if @petition.nil?
 		end
 	end
 
