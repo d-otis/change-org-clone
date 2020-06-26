@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :signatures, only: [:create, :destroy]
 
   resources :users do
-    resources :petitions, only: [:show, :new, :edit, :index]
+    resources :petitions, only: [:show, :new, :edit, :index] do
+      resources :signatures, only: [:index]
+    end
   end
 
   scope '/dashboard' do
