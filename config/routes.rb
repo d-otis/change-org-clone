@@ -4,13 +4,18 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :petitions, :users, :signatures
+  resources :petitions
+
+  resources :signatures, only: [:create, :destroy]
+
+  resources :users do
+    resources :petitions, only: [:show, :new, :edit, :index]
+  end
 
   scope '/dashboard' do
   	# get '/', to: 'users#dashboard'
-  	resources :users, only: [:show, :edit, :update, :destroy]
-  	resources :petitions
-  	resources :signatures, only: [:edit, :destroy]
+  	# resources :users, only: [:show, :edit, :update, :destroy]
+  	# resources :petitions
   end
 
   get '/dashboard', to: 'users#dashboard'
