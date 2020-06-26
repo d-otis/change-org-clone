@@ -5,11 +5,29 @@ class PetitionsController < ApplicationController
 	skip_before_action :require_login, only: [:index, :show]
 
 	def index
-		@petitions = Petition.all
+		if params[:user_id]
+			if User.find_by(id: params[:user_id])
+				@petitions = Petition.where(author: params[:user_id])
+				redirect_to user_path(params[:user_id]), notice: "Petition(s) not found" if @petitions.empty?
+			else
+				redirect_to petitions_path, notice: "User not found."
+			end
+		else
+			@petitions = Petition.all
+		end
 	end
 
 	def show
-		@signature = Signature.new
+		# check if the user exists
+		# check if the petition exists and that it belongs to user
+		@user = User.find_by(id: params[:user_id])
+		if @user.nil?
+			redirect_to petitions_path, notice: "User not found."
+		elsif @petition.nil? || @petition.author != @user
+			redirect_to petitions_path, notice: "Petition Not Found"
+		else
+			@signature = Signature.new
+		end
 	end
 
 	def edit
