@@ -13,6 +13,13 @@ class SignaturesController < ApplicationController
 		redirect_to petition_path(@petition), notice: "You signature has been removed."
 	end
 
+	def index
+		@petition = Petition.find_by(params[:petition_id])
+		if @petition.nil?
+			redirect_to petitions_path, notice: "Petition not found"
+		end
+	end
+
 	private
 
 	def signature_params
