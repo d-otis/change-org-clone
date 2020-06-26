@@ -31,7 +31,11 @@
 		<hr class="style-one">
 		<div class="row mt-3">
 			<div class="col">
+				<h3>Signatures:</h3>
 				<%= render 'signatures/attached_signatures' %>
+				<%= link_to petition_signatures_path(@petition) do %>
+					<small class="text-muted float-right">[view all signatures]</small>
+				<% end %>
 			</div>
 		</div>
 	</div>
