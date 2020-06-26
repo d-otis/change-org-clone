@@ -14,9 +14,11 @@ class SignaturesController < ApplicationController
 	end
 
 	def index
-		@petition = Petition.find_by(params[:petition_id])
+		@petition = Petition.find_by(id: params[:petition_id])
 		if @petition.nil?
 			redirect_to petitions_path, notice: "Petition not found"
+		else
+			@signatures = @petition.signatures
 		end
 	end
 
