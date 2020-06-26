@@ -1,3 +1,12 @@
 // Place all the styles related to the signatures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+a, a:hover {
+	color: #ec2c22;
+}
+
+a:hover {
+	// font-style: italic;
+	text-decoration: underline overline;
+}
