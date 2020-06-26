@@ -6,7 +6,7 @@
 		<% if !logged_in? %>
 			<div class="alert alert-primary text-center" role="alert">Must be <%= link_to 'logged in', signin_path %> to sign petition.</div>
 		<% end %>
-		<h1 class="petition-title mb-0"><%= @petition.title %></h1>
+		<h1 class="petition-title mb-0"><%= @petition.title.upcase %></h1>
 		<i class="far fa-user-circle"></i><small class="text-muted"> <%= link_to @petition.author_name, user_path(@petition.author), :class => 'badge badge-pill badge-danger' %> started this petition on <%= display_date(@petition.created_at) %></small>
 	</div>
 </div> <!-- end title and meta row -->
