@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback' => 'sessions#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  get '/petitions/most-signatures' => 'petitions#most_signatures'
+
   resources :petitions do
     resources :signatures, only: [:index]
   end
@@ -24,5 +26,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#dashboard'
 
   root 'petitions#index'
+
+
 
 end
