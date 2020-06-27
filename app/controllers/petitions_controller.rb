@@ -59,6 +59,11 @@ class PetitionsController < ApplicationController
 		redirect_to dashboard_path, notice: "You have deleted your petition."
 	end
 
+	def most_signatures
+		@petition = Petition.most_signatures.first
+		render :show
+	end
+
 	private
 
 	def petition_params
