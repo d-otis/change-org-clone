@@ -5,25 +5,5 @@
 	</div>
 </div>
 
-<% @petitions.each do |p| %> <%# PETITION LOOP START %>
+<%= render @petitions || "There are no Pettiions yet." %>
 
-<div class="row mb-5">
-	<div class="col-sm-10 offset-sm-1">
-		<div class="card">
-			<div class="card-body">
-				<h3 class="card-title"><%= p.title.upcase %></h3>
-				<p class="card-text"><%= display_excerpt(p,5) %></p>
-				
-				<p class="card-text"><span class="text-muted"> Created by: 
-						<%= link_to p.author_name, user_path(p.author), :class => 'badge badge-pill badge-secondary' %> &mdash;
-						<%= display_date(p.created_at) %></span></p>
-						<%= link_to "Sign this petition.", petition_path(p), :class => "btn btn-danger btn-block"  %>
-			</div>
-			<div class="card-footer text-muted">
-				<%= p.signature_count %> <%= link_to "supporters" , petition_signatures_path(p)  %> // Needs <%= p.signature_need %> more signatures
-			</div>
-		</div>
-	</div>
-</div>
-
-<% end %> <%# PETITION LOOP END %>

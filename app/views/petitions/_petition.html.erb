@@ -1,0 +1,18 @@
+<div class="row mb-5">
+	<div class="col-sm-10 offset-sm-1">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title"><%= petition.title.upcase %></h3>
+				<p class="card-text"><%= display_excerpt(petition,5) %></p>
+				
+				<p class="card-text"><span class="text-muted"> Created by: 
+						<%= link_to petition.author_name, user_path(petition.author), :class => 'badge badge-pill badge-secondary' %> &mdash;
+						<%= display_date(petition.created_at) %></span></p>
+						<%= link_to "Sign this petition.", petition_path(petition), :class => "btn btn-danger btn-block"  %>
+			</div>
+			<div class="card-footer text-muted">
+				<%= petition.signature_count %> <%= link_to "supporters" , petition_signatures_path(petition)  %> // Needs <%= petition.signature_need %> more signatures
+			</div>
+		</div>
+	</div>
+</div>
