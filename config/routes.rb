@@ -23,6 +23,6 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'users#dashboard'
 
-  root 'sessions#new'
+  root 'petitions#index'
 
 end
