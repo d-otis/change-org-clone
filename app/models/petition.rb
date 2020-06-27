@@ -28,6 +28,7 @@ class Petition < ApplicationRecord
 
 	def self.most_signatures
 		joins(:signatures).group("petitions.id").order(Arel.sql("COUNT(*) DESC"))
+		# should i go through and find if there are ties?
 	end
 
 	def self.signature_report
