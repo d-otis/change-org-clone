@@ -12,7 +12,7 @@
 		<div class="card">
 			<div class="card-body">
 				<h3 class="card-title"><%= p.title.upcase %></h3>
-				<p class="card-text"><%= display_excerpt(p, 5) %></p>
+				<p class="card-text"><%= display_excerpt(p,5) %></p>
 				
 				<p class="card-text"><span class="text-muted"> Created by: 
 						<%= link_to p.author_name, user_path(p.author), :class => 'badge badge-pill badge-secondary' %> &mdash;
