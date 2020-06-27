@@ -64,6 +64,11 @@ class PetitionsController < ApplicationController
 		render :show
 	end
 
+	def goal_met
+		@petitions = Petition.goal_met
+		render :index
+	end
+
 	private
 
 	def petition_params

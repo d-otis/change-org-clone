@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   get '/petitions/most-signatures' => 'petitions#most_signatures'
+  get '/petitions/goal-met' => 'petitions#goal_met'
 
   resources :petitions do
     resources :signatures, only: [:index]
