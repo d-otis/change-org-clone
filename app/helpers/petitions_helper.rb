@@ -23,8 +23,9 @@ module PetitionsHelper
 		petition.author == current_user
 	end
 
-	def display_excerpt(petition)
+	def display_excerpt(petition, num_sentences)
 		# needs work
-		petition.excerpt << (link_to("[read more]", petition_path(petition)))
+		# petition.excerpt << (link_to("[read more]", petition_path(petition)))
+		petition.description.split(". ")[0..num_sentences].join + " [...]"
 	end
 end
