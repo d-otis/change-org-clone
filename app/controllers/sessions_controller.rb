@@ -8,14 +8,15 @@ class SessionsController < ApplicationController
       @user = User.find_or_create_by(email: auth['info']['email']) do |u|
         u.password = generate_password
         u.name = auth['info']['name']
+        u.created_with_oauth = true
       end
       session[:user_id] = @user.id
-      redirect_to user_path(@user) and return
+      redirect_to user_path(@user)
     else
       @user = User.find_by(email: user_params[:email])
       if @user && @user.authenticate(user_params[:password])
         session[:user_id] = @user.id
-        redirect_to user_path(@user) and return
+        redirect_to user_path(@user)
       else
         redirect_to '/signin', notice: "Incorrect credentials."
       end
