@@ -28,4 +28,8 @@ module PetitionsHelper
 		# petition.excerpt << (link_to("[read more]", petition_path(petition)))
 		petition.description.split(". ")[0..num_sentences].join + " [...]"
 	end
+
+	def display_petition_count
+		Petition.count
+	end
 end
