@@ -5,11 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     if auth
-      @user = User.find_or_create_by(email: auth['info']['email']) do |u|
-        u.password = generate_password
-        u.name = auth['info']['name']
-        u.created_with_oauth = true
-      end
+      @user = create_omniauth_user(auth)
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
@@ -42,5 +38,13 @@ class SessionsController < ApplicationController
   def generate_password
     salt = BCrypt::Engine::generate_salt
     hash = BCrypt::Engine::hash_secret(salt, salt)
+  end
+
+  def create_omniauth_user(auth)
+    User.find_or_create_by(email: auth['info']['email']) do |u|
+      u.password = generate_password
+      u.name = auth['info']['name']
+      u.created_with_oauth = true
+    end
   end
 end
