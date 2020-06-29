@@ -1,7 +1,13 @@
 <%= render 'shared/notices' if flash.any? %>
-<div class="row mb-4">
+<div class="row my-5">
 	<div class="col text-center">
-		<h2>Browse Petitions</h2>
+		<div class="jumbotron">
+		  <div class="container">
+		    <h1 class="display-4">The world's platform for change</h1>
+		    <p class="lead">XXX people taking action.</p>
+		    <%= link_to "Start a petition", logged_in? ? new_user_petition_path(current_user) : signin_path, :class => "btn btn-danger" %>
+		  </div>
+		</div>
 	</div>
 </div>
 
