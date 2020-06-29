@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :edit, :update, :destroy, :index]
   
   def new
     @user = User.new
@@ -43,5 +44,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_login
+    redirect_to petitions_path, notice: "You must be logged in to view user info." unless logged_in?
   end
 end
