@@ -1,8 +1,8 @@
 class PetitionsController < ApplicationController
 	before_action :set_petition, only: [:show, :edit, :update, :destroy]
-	before_action :require_login
 	before_action :require_auth, only: [:edit, :destroy, :update]
-	skip_before_action :require_login, only: [:index, :show]
+	before_action :require_login
+	skip_before_action :require_login, only: [:index, :show, :most_signatures, :goal_met]
 
 	def index
 		if params[:user_id]
