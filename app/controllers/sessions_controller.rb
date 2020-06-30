@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to user_path(@user)
       else
-        @user.nil? ? flash[:notice] = "User not found" : flash[:notice] = "Incorrect Credentials"
+        @user.nil? ? flash[:notice] = "User not found" : flash[:notice] = "Incorrect Password"
         render :new
       end
     end
