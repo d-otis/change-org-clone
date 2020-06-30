@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to dashboard_path
+      redirect_to dashboard_path, notice: "You've updated your account information."
     else
       flash[:notice] = @user.errors.full_messages
       render :edit
