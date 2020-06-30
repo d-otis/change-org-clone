@@ -36,8 +36,12 @@ class PetitionsController < ApplicationController
 	end
 
 	def update
-		@petition.update(petition_params)
-		redirect_to petition_path(@petition), notice: "You have updated your petition!"
+		if @petition.update(petition_params)
+			redirect_to petition_path(@petition), notice: "You have updated your petition!"
+		else
+			flash[:notice] = @petition.errors.full_messages
+			render :edit
+		end
 	end
 
 	def new

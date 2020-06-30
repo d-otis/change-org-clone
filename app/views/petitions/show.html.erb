@@ -35,7 +35,7 @@
 				<%= render 'signatures/attached_signatures_brief' %>
 				<%= link_to petition_signatures_path(@petition) do %>
 					<small class="text-muted float-right">[view all signatures]</small>
-				<% end %>
+				<% end if @petition.signatures.count > 0 %>
 			</div>
 		</div>
 	</div>

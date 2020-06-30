@@ -1,7 +1,7 @@
 
 
 <% if @petition.signatures.count == 0 %>
-	<div class="alert alert-warning text-center" role="alert">Be the first to sign!</div>
+	<div class="alert alert-warning text-center animate__animated animate__repeat-3 animate__pulse" role="alert">Be the first to sign!</div>
 <% else %>
 	<% @petition.signatures_desc_brief.each do |signature| %>
 		<div class="card mb-2">
