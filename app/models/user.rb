@@ -3,7 +3,8 @@ class User < ApplicationRecord
 			 :class_name => "Petition", 
 			 :foreign_key => :author_id,
 			 :dependent => :destroy
-	has_many :signatures
+	has_many :signatures,
+			 :dependent => :destroy
 
 	has_secure_password
 
@@ -17,6 +18,6 @@ class User < ApplicationRecord
 	private
 
 	def should_validate?
-		new_record || password.present? if !created_with_oauth
+		new_record? || password.present? if !created_with_oauth
 	end
 end
