@@ -34,8 +34,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    redirect_to user_path(@user)
+
+    if @user.update(user_params)
+      redirect_to dashboard_path
+    else
+      flash[:notice] = @user.errors.full_messages
+      render :edit
+    end
   end
 
   private
