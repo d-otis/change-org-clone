@@ -1,20 +1,21 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to user_path(current_user) if current_user
+    redirect_to dashboard_path if current_user
   end
 
   def create
     if auth
       @user = create_omniauth_user(auth)
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to dashboard_path
     else
       @user = User.find_by(email: user_params[:email])
       if @user && @user.authenticate(user_params[:password])
         session[:user_id] = @user.id
         redirect_to user_path(@user)
       else
-        redirect_to '/signin', notice: "Incorrect credentials."
+        @user.nil? ? flash[:notice] = "User not found" : flash[:notice] = "Incorrect Credentials"
+        render :new
       end
     end
 

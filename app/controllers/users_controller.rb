@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user), notice: "You have successfully created an account!"
+      redirect_to dashboard_path, notice: "You have successfully created an account!"
     else
       flash[:notice] = @user.errors.full_messages
       render :new
