@@ -1,5 +1,15 @@
-<% flash.each do |type, msg| %>
-	<div class="alert alert-warning text-center" role="alert">
-		<%= msg %>
-	</div>
+<% if flash.any? %>
+	<% flash.each do |type, msg| %>
+		<% if msg.class == String %>
+			<div class="alert alert-warning text-center" role="alert">
+				<%= msg %>
+			</div>
+		<% else %>
+			<% msg.each do |m| %>
+				<div class="alert alert-warning text-center" role="alert">
+					<%= m %>
+				</div>
+			<% end %>
+		<% end %>
+	<% end %>
 <% end %>
