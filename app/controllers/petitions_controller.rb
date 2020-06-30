@@ -50,6 +50,7 @@ class PetitionsController < ApplicationController
 		if @petition.save
 			redirect_to petition_path(@petition), notice: "You have created a new petition!"
 		else
+			flash[:notice] = @petition.errors.full_messages
 			render :new
 		end
 	end

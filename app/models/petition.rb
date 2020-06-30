@@ -8,6 +8,10 @@ class Petition < ApplicationRecord
 			 :source => :user,
 			 :foreign_key => :user_id
 
+	validates :title, :presence => true
+	validates :description, :presence => true
+	validates :goal, :presence => true
+
 	accepts_nested_attributes_for :signatures
 
 	def author_name
