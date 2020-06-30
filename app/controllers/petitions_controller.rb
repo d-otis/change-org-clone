@@ -13,7 +13,7 @@ class PetitionsController < ApplicationController
 				redirect_to petitions_path, notice: "User not found."
 			end
 		else
-			@petitions = Petition.all
+			@petitions = Petition.order(:created_at => :desc)
 		end
 	end
 
