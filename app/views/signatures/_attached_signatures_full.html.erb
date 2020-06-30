@@ -3,12 +3,14 @@
 <% if @petition.signatures.count == 0 %>
 	<div class="alert alert-warning text-center" role="alert">Be the first to sign!</div>
 <% else %>
-	<% @petition.signatures_desc.each do |signature| %>
+	<% @petition.signatures_full.each do |signature| %>
 		<div class="card mb-2">
 			<div class="card-body">
 				<blockquote class="blockquote mb-0">
-					<% if signature.message %>
-						<p class="font-italic">"<%= display_message(signature) %>"</p>
+					<% if !signature.anonymous %>
+						<% if signature.message %>
+							<p class="font-italic">"<%= display_message(signature) %>"</p>
+						<% end %>
 					<% end %>
 					<footer class="blockquote-footer"><i class="far fa-user-circle"></i> <%= sig_usr_link(signature) %> <small class="font-weight-light"> on <%= display_date(signature.created_at) %></small></footer>
 				</blockquote>
