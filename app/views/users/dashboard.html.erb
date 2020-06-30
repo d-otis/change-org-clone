@@ -18,6 +18,9 @@
 				<h2>My Petitions</h2>
 				<div class="list-group">
 					 <%= render partial: 'petitions/details', collection: @user.authored_petitions, :as => :petition %>
+					 <% if @user.authored_petitions.blank? %>
+					 	<em>You haven't created any petitions yet!</em>
+					 <% end %>
 				</div>
 			</div>
 		</div>
@@ -26,6 +29,9 @@
 				<h2>I've Supported...</h2>
 				<div class="list-group">
 					<%= render partial: 'signatures/details', collection: @user.signatures, :as => :signature %>
+					<% if @user.signatures.blank? %>
+						<em>You haven't signed any petitions yet!</em>
+					<% end %>
 				</div>
 			</div>
 		</div>
