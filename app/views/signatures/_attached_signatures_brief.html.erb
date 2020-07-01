@@ -1,5 +1,3 @@
-
-
 <% if @petition.signatures.count == 0 %>
 	<div class="alert alert-warning text-center animate__animated animate__repeat-3 animate__pulse" role="alert">Be the first to sign!</div>
 <% else %>
@@ -15,7 +13,7 @@
 			</div>
 			<% if current_user == signature.user %>
 				<div class="card-body text-center mt-0">
-					<%= button_to "Remove Signature", signature, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger text-light' %>
+					<%= button_to "Remove Signature", signature, method: :delete, data: {turbolinks: false, confirm: 'Are you sure?'}, :class => 'btn btn-danger text-light' %>
 				</div>
 			<% end %>
 		</div>
