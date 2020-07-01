@@ -24,6 +24,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    current_user.destroy
+    reset_session
+    redirect_to root_path, notice: "You have deleted your account."
   end
 
   def edit

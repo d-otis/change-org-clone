@@ -9,7 +9,8 @@
 		<h2>Account Info</h2>
 		<ul class="list-group">
 		  <li class="list-group-item">Email: <%= @user.email %></li>
-		  <li class="list-group-item"><%= link_to "edit", edit_user_path(@user) %></li>
+		  <li class="list-group-item"><%= link_to "edit", edit_user_path(@user), :class => "btn btn-danger" %></li>
+		  <li class="list-group-item"><%= button_to "Delete Account", @user, :method => :delete, data: {confirm: "Are you sure?"}, :class => 'btn btn-danger text-light' %></li>
 		</ul>
 	</div>
 	<div class="col-sm-9">
