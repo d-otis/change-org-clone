@@ -77,7 +77,12 @@ class PetitionsController < ApplicationController
 	private
 
 	def petition_params
-		params.require(:petition).permit(:title, :description, :goal, :author_id)
+		params.require(:petition).permit(
+			:title, 
+			:description, 
+			:goal, 
+			:author_id,
+			:signatures_attributes => {})
 	end
 
 	def require_login
