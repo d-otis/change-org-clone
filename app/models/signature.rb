@@ -2,6 +2,8 @@ class Signature < ApplicationRecord
 	belongs_to :user
 	belongs_to :petition
 
+	validates_uniqueness_of :user_id, :scope => :petition_id, :message => "You have already signed this petition!"
+
 	def user_name
 		self.user.name
 	end
