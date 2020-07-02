@@ -8,6 +8,11 @@ class SessionsController < ApplicationController
       @user = create_omniauth_user(auth)
       session[:user_id] = @user.id
       redirect_to dashboard_path
+    elsif form_blank?
+      flash[:notice] = []
+      flash[:notice] << "Email can't be blank" if user_params[:email].blank?
+      flash[:notice] << "Password can't be blank" if user_params[:password].blank?
+      render :new and return
     else
       @user = User.find_by(email: user_params[:email])
       if @user && @user.authenticate(user_params[:password])
@@ -27,6 +32,10 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def form_blank?
+    user_params[:email].blank? || user_params[:password].blank?
+  end
 
   def user_params
   	params.require(:user).permit(:email, :password)
