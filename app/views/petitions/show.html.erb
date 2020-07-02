@@ -35,7 +35,7 @@
 				<%= render partial: 'signatures/attached_signatures', locals: {signatures: @petition.signatures_brief} %>
 				<%= link_to petition_signatures_path(@petition) do %>
 					<small class="text-muted float-right">[view all signatures]</small>
-				<% end if @petition.signatures.count > 0 %>
+				<% end if @petition.signatures.count > 5 %>
 			</div>
 		</div>
 	</div>
