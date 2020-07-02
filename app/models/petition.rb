@@ -26,7 +26,7 @@ class Petition < ApplicationRecord
 		self.signatures.count
 	end
 
-	def signatures_desc_brief
+	def signatures_brief
 		self.signatures.order(:created_at => :desc).first(5)
 	end
 

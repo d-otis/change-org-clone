@@ -1,2 +1,2 @@
 <h2>Signatures for <%= link_to @petition.title.upcase, petition_path(@petition) %> </h2>
-<%= render 'attached_signatures_full' %>
+<%= render partial: 'attached_signatures', locals: {signatures: @petition.signatures_full} %>

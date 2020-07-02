@@ -1,23 +1,19 @@
-
-
-<% if @petition.signatures.count == 0 %>
-	<div class="alert alert-warning text-center" role="alert">Be the first to sign!</div>
+<% if signatures.count == 0 %>
+	<div class="alert alert-warning text-center animate__animated animate__repeat-3 animate__pulse" role="alert">Be the first to sign!</div>
 <% else %>
-	<% @petition.signatures_full.each do |signature| %>
+	<% signatures.each do |signature| %>
 		<div class="card mb-2">
 			<div class="card-body">
 				<blockquote class="blockquote mb-0">
-					<% if !signature.anonymous %>
-						<% if signature.message %>
-							<p class="font-italic">"<%= display_message(signature) %>"</p>
-						<% end %>
+					<% if signature.message && !signature.anonymous %>
+						<p class="font-italic">"<%= display_message(signature) %>"</p>
 					<% end %>
 					<footer class="blockquote-footer"><i class="far fa-user-circle"></i> <%= sig_usr_link(signature) %> <small class="font-weight-light"> on <%= display_date(signature.created_at) %></small></footer>
 				</blockquote>
 			</div>
 			<% if current_user == signature.user %>
 				<div class="card-body text-center mt-0">
-					<%= button_to "Remove Signature", signature, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger text-light' %>
+					<%= button_to "Remove Signature", signature, method: :delete, data: {turbolinks: false, confirm: 'Are you sure?'}, :class => 'btn btn-danger text-light' %>
 				</div>
 			<% end %>
 		</div>
