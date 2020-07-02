@@ -2,6 +2,9 @@
 	<div class="alert alert-warning text-center animate__animated animate__repeat-3 animate__pulse" role="alert">Be the first to sign!</div>
 <% else %>
 	<% signatures.each do |signature| %>
+	<%# START MODAL %>
+	<%= render partial: 'signatures/modal', locals: {signature: signature} if current_user == signature.user %>
+	<%# END MODAL %>
 		<div class="card mb-2">
 			<div class="card-body">
 				<blockquote class="blockquote mb-0">
@@ -13,7 +16,10 @@
 			</div>
 			<% if current_user == signature.user %>
 				<div class="card-body text-center mt-0">
-					<%= button_to "Remove Signature", signature, method: :delete, data: {turbolinks: false, confirm: 'Are you sure?'}, :class => 'btn btn-danger text-light' %>
+					<%# button_to "Remove Signature", signature, method: :delete, data: {turbolinks: false, confirm: 'Are you sure?'}, :class => 'btn btn-danger text-light' %>
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+					  Remove Signature
+					</button>
 				</div>
 			<% end %>
 		</div>
