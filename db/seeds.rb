@@ -6,20 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# ++++++++++++++++
-# +SEED VARIABLES+
-# ++++++++++++++++
-num_users = 20
-num_petitions = 50
-num_signatures = 70
 
-def mega_seed(users, petitions, signatures)
+def mega_seed(users, signatures)
 	puts ""
 	puts "Beginning Seed..."
 	puts ""
 
 	make_users(users)
-	make_petitions(petitions)
+	make_petitions
 	make_signatures(signatures)
 end
 
@@ -29,7 +23,8 @@ def make_users(num)
 		u = User.create(
 			:name => Faker::Name.unique.name,
 			:email => Faker::Internet.unique.email,
-			:password => '1234')
+			:password => pwd,
+			:password_confirmation => pwd)
 		puts "#{u.id}. #{u.name} has joined"
 	end
 
@@ -38,19 +33,21 @@ def make_users(num)
 	puts ""
 end
 
-def make_petitions(num)
-	random_users = (1..User.count).sort{ rand() - 0.5 }
+def make_petitions
+	randomized_users = (1..User.count).sort{ rand() - 0.5 }
 
-	random_users.each do |p|
-		Petition.create(
-			:title => Faker::TvShows::MichaelScott.unique.quote,
-			:description => LoremIpsumText::multiple_para(rand(10..30)).join("\r\n\r\n"),
-			:author_id => p,
-			:goal => rand(12..24))
+	randomized_users.each do |p|
+		rand(3..6).times do
+			Petition.create(
+				:title => Faker::Lorem.sentence(word_count: rand(5..11)), 
+				:description => LoremIpsumText::multiple_para(rand(10..30)).join("\r\n\r\n"),
+				:author_id => p, 
+				:goal => rand(12..20))
+		end
 	end
 
 	puts ""
-	puts "Created #{num} petitions..."
+	puts "Created #{Petition.count} petitions..."
 	puts ""
 end
 
@@ -72,13 +69,19 @@ def make_signatures(num)
 	end
 
 	puts ""
-	puts "Created #{num} signatures..."
+	puts "Created #{Signature.count} signatures..."
 	puts ""
 end
 
+# ++++++++++++++++
+# +SEED VARIABLES+
+# ++++++++++++++++
+pwd = '1234'
+num_users = 100
+num_signatures = 150
 
-mega_seed(num_users, num_petitions, num_signatures)
+mega_seed(num_users, num_signatures)
 
-pookie = User.create(name: "Pookie McGillicutty", email: "pookie@gmail.com", password: "1234")
-dan = User.create(name: "Dan Foley", email: "dan@dan-foley.biz", password: "1234")
+pookie = User.create(name: "Pookie McGillicutty", email: "pookie@gmail.com", password: pwd, :password_confirmation => pwd)
+dan = User.create(name: "Dan Foley", email: "dan@dan-foley.biz", password: pwd, :password_confirmation => pwd)
 pookie.authored_petitions.create(title: "End Scooter McBooberson’s Reign of Terror", description: "She stinks!", goal: 5)
