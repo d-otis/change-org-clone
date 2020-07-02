@@ -37,7 +37,7 @@ def make_petitions
 	randomized_users = (1..User.count).sort{ rand() - 0.5 }
 
 	randomized_users.each do |p|
-		rand(3..6).times do
+		rand(0..3).times do
 			Petition.create(
 				:title => Faker::Lorem.sentence(word_count: rand(5..11)), 
 				:description => LoremIpsumText::multiple_para(rand(10..30)).join("\r\n\r\n"),
