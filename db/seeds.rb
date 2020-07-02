@@ -43,7 +43,7 @@ def make_petitions(num)
 
 	random_users.each do |p|
 		Petition.create(
-			:title => Faker::Quote.unique.robin,
+			:title => Faker::TvShows::MichaelScott.unique.quote,
 			:description => LoremIpsumText::multiple_para(rand(10..30)).join("\r\n\r\n"),
 			:author_id => p,
 			:goal => rand(12..24))
