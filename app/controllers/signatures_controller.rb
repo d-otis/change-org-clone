@@ -10,6 +10,7 @@ class SignaturesController < ApplicationController
 	def destroy
 		@petition = @signature.petition
 		@signature.destroy
+
 		redirect_to petition_path(@petition), notice: "You signature has been removed."
 	end
 
@@ -30,6 +31,7 @@ class SignaturesController < ApplicationController
 
 	def require_ownership
 		@signature = Signature.find(params[:id])
+		
 		redirect_to dashboard_path unless current_user == @signature.user
 	end
 end
