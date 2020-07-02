@@ -66,6 +66,7 @@ class PetitionsController < ApplicationController
 
 	def most_signatures
 		@petition = Petition.most_signatures.first
+		@signature = Signature.new
 		render :show
 	end
 
