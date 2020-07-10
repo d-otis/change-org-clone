@@ -1,14 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-	context "validations" do
-		let(:valid_attributes) do {
-			name: "Trent Reznor",
-			email: "treznor@gmail.com",
-			password: "1234",
-			password_confirmation: "1234"
-		}
-		end
+
+	let(:valid_attributes) do {
+		name: "Trent Reznor",
+		email: "treznor@gmail.com",
+		password: "1234",
+		password_confirmation: "1234"
+	}
+	end
+
+	context "when created via sign up form" do
+
 
 		let(:missing_name) { valid_attributes.except(:name) }
 		let(:missing_email) { valid_attributes.except(:email) }
@@ -50,6 +53,15 @@ RSpec.describe User, type: :model do
 
 		it "is invalid when password and confirmation do not match" do
 			expect(User.new(password_mismatch)).to be_invalid
+		end
+	end
+
+	context "when created with OAuth" do
+
+		let(:oauth_user) { valid_attributes.merge( :created_with_oauth => true ) }
+		
+		it "is valid without password_confirmation" do
+			expect(User.new(oauth_user)).to be_valid
 		end
 	end
 end
