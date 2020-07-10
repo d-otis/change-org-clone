@@ -37,6 +37,7 @@ group :development, :test do
   gem 'pry'
   gem 'faker'
   gem 'lorem_ipsum_text'
+  gem 'rspec-rails'
 end
 
 group :development do
