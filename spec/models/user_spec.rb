@@ -56,6 +56,20 @@ RSpec.describe User, type: :model do
 		end
 	end
 
+	describe "authenticate" do
+		it "returns the user if the credentials match" do
+			user = User.new
+			user.password = '1234'
+			expect(user.authenticate('1234')).to eq(user)
+		end
+
+		it "returns falsey if credentials don't match" do
+			user = User.new
+			user.password = '1234'
+			expect(user.authenticate('0000')).to be_falsey
+		end
+	end
+
 	context "when created with OAuth" do
 
 		let(:oauth_user) { valid_attributes.merge( :created_with_oauth => true ) }
@@ -63,5 +77,9 @@ RSpec.describe User, type: :model do
 		it "is valid without password_confirmation" do
 			expect(User.new(oauth_user)).to be_valid
 		end
+	end
+
+	context "creating petitions" do
+
 	end
 end
