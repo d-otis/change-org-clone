@@ -11,8 +11,6 @@ RSpec.describe User, type: :model do
 	end
 
 	context "when created via sign up form" do
-
-
 		let(:missing_name) { valid_attributes.except(:name) }
 		let(:missing_email) { valid_attributes.except(:email) }
 		let(:missing_password) { valid_attributes.except(:password) }
@@ -71,7 +69,6 @@ RSpec.describe User, type: :model do
 	end
 
 	context "when created with OAuth" do
-
 		let(:oauth_user) { valid_attributes.merge( :created_with_oauth => true ) }
 		
 		it "is valid without password_confirmation" do
@@ -79,7 +76,23 @@ RSpec.describe User, type: :model do
 		end
 	end
 
-	context "creating petitions" do
+	context "Petitions" do
+		let(:trez) {
+			User.create(
+				:name => "Trent Reznor",
+				:password => "closer",
+				:password_confirmation => "closer",
+				:email => "trez@nin.com",
+				:created_with_oauth => false
+			)
+		}
 
+		it "trent reznor is valid" do
+			expect(trez).to be_valid
+		end
+
+		it "has many petitions" do
+
+		end
 	end
 end
