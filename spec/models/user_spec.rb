@@ -123,48 +123,19 @@ RSpec.describe User, type: :model do
 			)
 		}
 
-		# xit "trent reznor is valid" do
-		# 	expect(trez).to be_valid
-		# end
-
 		it "user has many petitions" do
-			# first_petition = Petition.create(
-			# 	:author_id => trez.id, 
-			# 	:title => "First Title",
-			# 	:description => "First description",
-			# 	:goal => 10
-			# )
-
-			# second_petition = Petition.create(
-			# 	:author_id => trez.id, 
-			# 	:title => "Second Title",
-			# 	:description => "Second description",
-			# 	:goal => 20
-			# )!
 			expect(trez.authored_petitions.first).to eq(first_petition)
 			expect(trez.authored_petitions.second).to eq(second_petition)
 		end
 
 		it "user has many signatures" do
-			# first_signature = Signature.create(
-			# 	:user => trez,
-			# 	:petition => first_petition,
-			# 	:message => "This is my first signing",
-			# 	:anonymous => false
-			# )
-			# second_signature = Signature.create(
-			# 	:user => trez,
-			# 	:petition => second_petition,
-			# 	:message => "This is my second signing",
-			# 	:anonymous => true
-			# )
 			expect(trez.signatures.count).to be(2)
 		end
 
 		it "deletes petitions when user is deleted" do
-			expect(Petition.count).to eq(2)
+			expect(trez.authored_petitions.count).to eq(2)
 			trez.destroy
-			expect(Petition.count).to eq(0)
+			expect(trez.authored_petitions.count).to eq(0)
 		end
 
 		it "deletes signatures when a petition is deleted" do
