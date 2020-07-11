@@ -92,7 +92,21 @@ RSpec.describe User, type: :model do
 		end
 
 		it "has many petitions" do
-
+			first_petition = Petition.create(
+				:title => "Here's My Title",
+				:description => "Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+				:goal => 10,
+				:author => trez
+			)
+			second_petition = Petition.create(
+				:title => "Second Title",
+				:description => "Maecenas faucibus mollis interdum.",
+				:goal => 15,
+				:author => trez
+			)
+			# expect(trez.authored_petitions.count).to eq(2)
+			expect(trez.authored_petitions.first).to eq(first_petition)
+			expect(trez.authored_petitions.second).to eq(second_petition)
 		end
 	end
 end
