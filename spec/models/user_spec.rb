@@ -76,7 +76,7 @@ RSpec.describe User, type: :model do
 		end
 	end
 
-	context "Petitions" do
+	context "with petitions" do
 		let(:trez) {
 			User.create(
 				:name => "Trent Reznor",
@@ -87,26 +87,89 @@ RSpec.describe User, type: :model do
 			)
 		}
 
-		it "trent reznor is valid" do
-			expect(trez).to be_valid
-		end
-
-		it "has many petitions" do
-			first_petition = Petition.create(
-				:title => "Here's My Title",
+		let!(:first_petition) {
+			 Petition.create!(
+				:title => "First Title",
 				:description => "Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit.",
 				:goal => 10,
-				:author => trez
+				:author_id => trez.id
 			)
-			second_petition = Petition.create(
+		}
+
+		let!(:second_petition) {
+			 Petition.create!(
 				:title => "Second Title",
 				:description => "Maecenas faucibus mollis interdum.",
 				:goal => 15,
-				:author => trez
+				:author_id => trez.id
 			)
-			# expect(trez.authored_petitions.count).to eq(2)
+		}
+
+		let!(:first_signature) {
+			Signature.create(
+				:user => trez,
+				:petition => first_petition,
+				:message => "This is my first signing",
+				:anonymous => false
+			)
+		}
+		
+		let!(:second_signature) {
+			Signature.create(
+				:user => trez,
+				:petition => second_petition,
+				:message => "This is my second signing",
+				:anonymous => true
+			)
+		}
+
+		# xit "trent reznor is valid" do
+		# 	expect(trez).to be_valid
+		# end
+
+		it "user has many petitions" do
+			# first_petition = Petition.create(
+			# 	:author_id => trez.id, 
+			# 	:title => "First Title",
+			# 	:description => "First description",
+			# 	:goal => 10
+			# )
+
+			# second_petition = Petition.create(
+			# 	:author_id => trez.id, 
+			# 	:title => "Second Title",
+			# 	:description => "Second description",
+			# 	:goal => 20
+			# )!
 			expect(trez.authored_petitions.first).to eq(first_petition)
 			expect(trez.authored_petitions.second).to eq(second_petition)
+		end
+
+		it "user has many signatures" do
+			# first_signature = Signature.create(
+			# 	:user => trez,
+			# 	:petition => first_petition,
+			# 	:message => "This is my first signing",
+			# 	:anonymous => false
+			# )
+			# second_signature = Signature.create(
+			# 	:user => trez,
+			# 	:petition => second_petition,
+			# 	:message => "This is my second signing",
+			# 	:anonymous => true
+			# )
+			expect(trez.signatures.count).to be(2)
+		end
+
+		it "deletes petitions when user is deleted" do
+			expect(Petition.count).to eq(2)
+			trez.destroy
+			expect(Petition.count).to eq(0)
+		end
+
+		it "deletes signatures when a petition is deleted" do
+			trez.authored_petitions.first.destroy
+			expect(trez.signatures.count).to eq(1)
 		end
 	end
 end
