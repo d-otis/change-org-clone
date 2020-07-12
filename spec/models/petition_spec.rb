@@ -55,7 +55,47 @@ RSpec.describe Petition, type: :model do
   end
 
   context "signatures/signers" do
+    let(:kilo_kish) {
+      User.create(
+        :name => "Kilo Kish",
+        :email => "kilo@kilokish.com",
+        :password => "1234",
+        :created_with_oauth => true
+      )
+    }
+
+    let(:dorian_electra) {
+      User.create(
+        :name => "Dorian Electra",
+        :email => "dorian@dorianelectra.com",
+        :password => "1234",
+        :created_with_oauth => true
+      )
+    }
+
+    let(:first_signature) {
+      Signature.new(
+        :message => "First Signature Message",
+        :anonymous => true,
+        :user_id => kilo_kish.id,
+        :petition_id => valid_petition.id)
+    }
+
+    let(:second_signature) {
+      Signature.new(
+        :message => "second Signature Message",
+        :anonymous => true,
+        :user_id => dorian_electra.id,
+        :petition_id => valid_petition.id)
+    }
     # create new user and make them signe
     # test for ActiveRecord query methods
+    it "has many signatures and many signers" do
+      valid_petition.save
+      valid_petition.signatures << first_signature
+      valid_petition.signatures << second_signature
+      expect(valid_petition.signatures.count).to eq(2)
+      expect(valid_petition.signers.count).to eq(2)
+    end
   end
 end
