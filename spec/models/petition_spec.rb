@@ -33,7 +33,7 @@ RSpec.describe Petition, type: :model do
       :author_id => peaches.id,
       :title => "First Petition Title",
       :description => "First Petition Description",
-      :goal => 100
+      :goal => 1
   }
    end
 
@@ -60,6 +60,57 @@ RSpec.describe Petition, type: :model do
   let(:zero_goal) { Petition.new(valid_attrs.merge(:goal => 0)) }
   let(:negative_goal) { Petition.new(valid_attrs.merge(:goal => -1)) }
   let(:float_goal) { Petition.new(valid_attrs.merge(:goal => 2.5)) }
+
+  let(:saved_petition) do
+    valid_petition.save
+    valid_petition
+  end
+
+  context "model attributes" do
+    it "responds to title" do
+      expect(Petition.new).to respond_to(:title)
+    end
+
+    it "responds to description" do
+      expect(Petition.new).to respond_to(:description)
+    end
+
+    it "responds to goal" do
+      expect(Petition.new).to respond_to(:goal)
+    end
+
+    it "responds to author/author_id" do
+      expect(Petition.new).to respond_to(:author)
+      expect(Petition.new).to respond_to(:author_id)
+    end
+  end
+
+  context "custom instance methods" do
+    it "responds to #author_name" do
+      saved_petition
+      expect(valid_petition).to respond_to(:author_name)
+    end
+
+    it "responds to signature_count" do
+      saved_petition
+      expect(valid_petition).to respond_to(:signature_count)
+    end
+
+    it '#author_name returns name of petition author' do
+      saved_petition
+      expect(valid_petition.author_name).to eq("Peaches")
+    end
+
+    it '#goal_percent returns the percentage met of the signature goal' do
+      saved_petition
+      valid_petition.signatures << first_signature
+      expect(valid_petition.goal_percent).to eq(100)
+    end
+
+    xit '#signatures_brief returns the first 5 signatures in reverse chrono order' do
+      
+    end
+  end
 
   context "validations" do
     it "is valid with valid attributes" do
@@ -90,7 +141,7 @@ RSpec.describe Petition, type: :model do
 
   context "signatures/signers" do
     it "has many signatures and many signers" do
-      valid_petition.save
+      saved_petition
       valid_petition.signatures << first_signature
       valid_petition.signatures << second_signature
       expect(valid_petition.signatures.count).to eq(2)
