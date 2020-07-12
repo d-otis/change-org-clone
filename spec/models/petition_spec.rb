@@ -107,8 +107,11 @@ RSpec.describe Petition, type: :model do
       expect(valid_petition.goal_percent).to eq(100)
     end
 
-    xit '#signatures_brief returns the first 5 signatures in reverse chrono order' do
-      
+    it '#signatures_brief returns the first 5 signatures in reverse chrono order' do
+      saved_petition.signatures << first_signature
+      saved_petition.signatures << second_signature
+      expect(saved_petition.signatures_brief.count).to be <= 5
+      expect(saved_petition.signatures_brief.first).to eq(second_signature)
     end
   end
 
