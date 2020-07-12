@@ -113,6 +113,13 @@ RSpec.describe Petition, type: :model do
       expect(saved_petition.signatures_brief.count).to be <= 5
       expect(saved_petition.signatures_brief.first).to eq(second_signature)
     end
+
+    it '#signatures_full returns all signatures in reverse chrono order' do
+      saved_petition.signatures << first_signature
+      saved_petition.signatures << second_signature
+      expect(saved_petition.signatures_full.count).to eq(saved_petition.signatures.count)
+      expect(saved_petition.signatures_full.last).to eq(first_signature)
+    end
   end
 
   context "validations" do
