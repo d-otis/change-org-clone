@@ -35,6 +35,14 @@ class Petition < ApplicationRecord
 		self.signatures.order(:created_at => :desc)
 	end
 
+	def signature_need
+		self.goal - self.signature_count
+	end
+
+	def excerpt
+		self.description.split(". ")[0..2].join + " [...]"
+	end
+
 	def self.most_signatures
 		joins(:signatures).group("petitions.id").order(Arel.sql("COUNT(*) DESC"))
 		 # returns an array of petitions even if there's only one 
@@ -53,13 +61,5 @@ class Petition < ApplicationRecord
 		# 	3=>7, 4=>6, 2=>6, 11=>5, 8=>5, 5=>5, 16=>4, 14=>4, 7=>4, 19=>3, 
 		# 	17=>3, 15=>3, 12=>3, 10=>2, 9=>2, 6=>2, 1=>2, 22=>1, 21=>1, 20=>1, 18=>1, 13=>1
 		# }
-	end
-
-	def signature_need
-		self.goal - self.signature_count
-	end
-
-	def excerpt
-		self.description.split(". ")[0..2].join + " [...]"
 	end
 end
