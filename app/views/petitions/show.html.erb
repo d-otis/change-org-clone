@@ -8,6 +8,8 @@
 		<% end %>
 		<h1 class="petition-title mb-0"><%= @petition.title.upcase %></h1>
 		<i class="far fa-user-circle"></i><small class="text-muted"> <%= link_to @petition.author_name, user_path(@petition.author), :class => 'badge badge-pill badge-danger' %> started this petition on <%= display_date(@petition.created_at) %></small>
+		<br>
+		<i class="far fa-folder mr-2"></i><small class="text-muted">Category: <%= link_to @petition.category_title, category_path(@petition.category) %></small>
 	</div>
 </div> <!-- end title and meta row -->
 <div class="row mb-5"> <!-- petition description and signature form -->
