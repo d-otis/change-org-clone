@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
   def show
-  	@petitions = Category.find(params[:id]).petitions
-
-  	render "petitions/index"
+  	@category = Category.find(params[:id])
+  	@petitions = @category.petitions
   end
 end
