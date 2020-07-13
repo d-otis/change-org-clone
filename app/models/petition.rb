@@ -18,6 +18,7 @@ class Petition < ApplicationRecord
 	validates :goal, :presence => true, numericality: { :greater_than => 0, :only_integer => true }
 
 	accepts_nested_attributes_for :signatures
+	accepts_nested_attributes_for :category
 
 	def author_name
 		self.author.name
