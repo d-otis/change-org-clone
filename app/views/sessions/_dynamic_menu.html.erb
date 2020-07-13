@@ -26,6 +26,8 @@
 			<%= link_to "Browse", petitions_path, :class => 'nav-link' %>
 		</li>
 
+
+
 		<li class="nav-item">
 			<%= link_to "Sign up", new_user_path, :class => 'nav-link' %>
 		</li>
@@ -33,6 +35,17 @@
 		
 		
 <% end %>
+
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Categories
+		</a>
+		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="#">Action</a>
+			<% cat_list.each do |c| %>
+				<%= link_to c.title, category_path(c), :class => 'dropdown-item' %>
+			<% end %>
+      </li>
 
 <li class="nav-item">
 	<%= link_to "Most Signatures", petitions_most_signatures_path, :class => 'nav-link' %>

@@ -6,4 +6,8 @@ module ApplicationHelper
 	def logged_in?
 		!!current_user
 	end
+
+	def cat_list
+		Category.all
+	end
 end
