@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :petitions, only: [:show, :new, :edit, :index]
   end
 
+  resources :categories, only: [:show]
+
   scope '/dashboard' do
   	# get '/', to: 'users#dashboard'
   	# resources :users, only: [:show, :edit, :update, :destroy]
