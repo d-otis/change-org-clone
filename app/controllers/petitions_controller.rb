@@ -33,7 +33,7 @@ class PetitionsController < ApplicationController
 	end
 
 	def edit
-		@categories = Category.all
+		@categories = Category.order(:title => :asc)
 	end
 
 	def update
@@ -47,7 +47,7 @@ class PetitionsController < ApplicationController
 
 	def new
 		@petition = Petition.new
-		@categories = Category.all
+		@categories = Category.order(:title => :asc)
 	end
 
 	def create

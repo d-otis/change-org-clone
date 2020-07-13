@@ -8,6 +8,6 @@ module ApplicationHelper
 	end
 
 	def cat_list
-		Category.all
+		Category.order(:title => :asc)
 	end
 end
