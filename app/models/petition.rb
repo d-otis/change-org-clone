@@ -24,6 +24,10 @@ class Petition < ApplicationRecord
 		self.author.name
 	end
 
+	def category_title
+		self.category.title
+	end
+
 	def goal_percent
 		((self.signatures.count.to_f / self.goal.to_f) * 100).round
 	end
