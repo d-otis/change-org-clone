@@ -16,16 +16,16 @@
   <hr class="my-3">
   <div>
     <%= f.fields_for :categories do |cat| %>
-      <% collection_radio_buttons(:petition, :category_id, @categories, :id, :title) do |b| %>
+      <% collection_radio_buttons(:petition, :category_id, @categories, :id, :title, {}, {}) do |b| %>
       <%= content_tag :div, :class => 'form-check-inline' do -%>
-        <%= b.label(:class => 'form-check-label') { b.radio_button(:class => 'form-check-input') + b.text } %>
+        <%= b.label(:class => 'form-check-label') { b.radio_button(:class => 'form-check-input', :checked => true) + b.text } %>
         <% end -%>
       <% end %>
     <% end %>
   </div>
 
 
-  <%= render partial: 'nested_signature_form', locals: {f: f} if action_name == "new" %>
+  <%= render partial: 'nested_signature_form', locals: {f: f} unless action_name == "edit" %>
   <%# END NESTED ATTRS %>
   
   <%= f.hidden_field :author_id, :value => current_user.id %>
