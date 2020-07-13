@@ -33,6 +33,7 @@ class PetitionsController < ApplicationController
 	end
 
 	def edit
+		@categories = Category.all
 	end
 
 	def update
@@ -46,6 +47,7 @@ class PetitionsController < ApplicationController
 
 	def new
 		@petition = Petition.new
+		@categories = Category.all
 	end
 
 	def create
