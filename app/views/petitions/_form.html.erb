@@ -20,22 +20,8 @@
     <% end %>
   </div>
 
-  <% if action_name == "new" %>
-    <hr class="my-3">
-    <%# NESTED ATTRS  %>
-      <%= f.fields_for :signatures, @petition.signatures.build do |sig| %>
-        <h5>Your Signature</h5>
-        <div class="form-group">
-          <%= sig.label "Message" %>
-          <%= sig.text_area :message, :class => "form-control", :placeholder => "I'm signing because... (optional)" %>
-        </div>
-        <div class="form-group form-check">
-          <%= sig.check_box(:anonymous, {:class => 'form-check-input', :checked => true}, "false", "true") %>
-          <%= sig.label :anonymous, "Display my name and comment on this petition", :class => 'form-check-label' %>
-        </div>
-        <%= sig.hidden_field :user_id, :value => current_user.id %>
-      <% end %>
-    <% end %>
+
+  <%= render partial: 'nested_signature_form', locals: {f: f} if action_name == "new" %>
   <%# END NESTED ATTRS %>
   
   <%= f.hidden_field :author_id, :value => current_user.id %>
