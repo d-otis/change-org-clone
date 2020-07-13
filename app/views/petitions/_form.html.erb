@@ -16,7 +16,11 @@
   <hr class="my-3">
   <div>
     <%= f.fields_for :categories do |cat| %>
-      <%= collection_radio_buttons(:petition, :category_id, @categories, :id, :title) %>
+      <% collection_radio_buttons(:petition, :category_id, @categories, :id, :title) do |b| %>
+      <%= content_tag :div, :class => 'form-check-inline' do -%>
+        <%= b.label(:class => 'form-check-label') { b.radio_button(:class => 'form-check-input') + b.text } %>
+        <% end -%>
+      <% end %>
     <% end %>
   </div>
 
