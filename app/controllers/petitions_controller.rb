@@ -57,23 +57,27 @@ class PetitionsController < ApplicationController
 			redirect_to petition_path(@petition), notice: "You have created a new petition!"
 		else
 			flash.now[:notice] = @petition.errors.full_messages
+			
 			render :new
 		end
 	end
 
 	def destroy
 		@petition.destroy
+		
 		redirect_to dashboard_path, notice: "You have deleted your petition."
 	end
 
 	def most_signatures
 		@petition = Petition.most_signatures.first
 		@signature = Signature.new
+
 		render :show
 	end
 
 	def goal_met
 		@petitions = Petition.goal_met
+
 		render :index
 	end
 
