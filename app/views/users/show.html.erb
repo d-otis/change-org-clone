@@ -6,7 +6,7 @@
 	<div class="col">
 		<h2>Petitions</h2>
 		<div class="list-group">
-			<%= render partial: 'petitions/details', collection: @user.authored_petitions, :as => :petition %>
+			<%= render(partial: 'petitions/details', collection: @user.authored_petitions, :as => :petition) || "User has no authored petitions." %>
 		</div>
 	</div>
 </div>
@@ -14,7 +14,7 @@
 	<div class="col">
 		<h2>Signed Petitions</h2>
 		<div class="list-group">
-			<%= render partial: 'signatures/details', collection: @user.signatures, :as => :signature %>
+			<%= render(partial: 'signatures/details', collection: @user.signatures, :as => :signature) || "User has not signed any petitions."%>
 		</div>
 	</div>
 </div>
