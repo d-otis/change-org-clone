@@ -12,6 +12,7 @@
 			</div>
 			<div class="card-footer text-muted">
 				<%= petition.signature_count %> <%= link_to "supporters" , petition_signatures_path(petition)  %> // Needs <%= petition.signature_need %> more signatures
+				//<i class="far fa-folder mx-2"></i>Category : <%= link_to petition.category_title, category_path(petition.category)  %>
 			</div>
 		</div>
 	</div>
