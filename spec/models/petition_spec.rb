@@ -34,8 +34,16 @@ RSpec.describe Petition, type: :model do
       :title => "First Petition Title",
       :description => "First Petition Description",
       :goal => 1
-  }
+    }
    end
+
+  let(:second_petition) {
+    Petition.create(
+      :title => "Second Petition",
+      :description => "Second Description",
+      :goal => 2,
+      :author_id => peaches.id)
+  }
 
    let(:first_signature) {
      Signature.new(
@@ -125,6 +133,15 @@ RSpec.describe Petition, type: :model do
       saved_petition.signatures << first_signature
       saved_petition.signatures << second_signature
       expect(saved_petition.signature_need).to eq(0)
+    end
+  end
+
+  context "custom class methods" do
+    xit ".most_signatures returns the petition with the most signatures" do
+      second_petition
+      saved_petition.signatures << first_signature
+      saved_petition.signatures << second_signature
+      expect(Petition.most_signatures).to include(saved_petition)
     end
   end
 
