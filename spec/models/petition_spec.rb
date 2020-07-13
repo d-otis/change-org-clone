@@ -120,6 +120,12 @@ RSpec.describe Petition, type: :model do
       expect(saved_petition.signatures_full.count).to eq(saved_petition.signatures.count)
       expect(saved_petition.signatures_full.last).to eq(first_signature)
     end
+
+    it '#signature_need returns remaining signatures needed or zero' do
+      saved_petition.signatures << first_signature
+      saved_petition.signatures << second_signature
+      expect(saved_petition.signature_need).to eq(0)
+    end
   end
 
   context "validations" do

@@ -36,7 +36,8 @@ class Petition < ApplicationRecord
 	end
 
 	def signature_need
-		self.goal - self.signature_count
+		need = self.goal - self.signature_count
+		need <= 0 ? 0 : need
 	end
 
 	def excerpt
