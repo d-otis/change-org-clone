@@ -85,6 +85,7 @@ class PetitionsController < ApplicationController
 			:description, 
 			:goal, 
 			:author_id,
+			:category_id,
 			:signatures_attributes => {})
 	end
 
