@@ -25,7 +25,7 @@ class Petition < ApplicationRecord
 	end
 
 	def category_title
-		self.category.title
+		self.category.title if self.category
 	end
 
 	def goal_percent
