@@ -1,14 +1,5 @@
 <%= render 'shared/notices' if flash.any? %>
-<div class="row my-5">
-	<div class="col text-center">
-		<div class="jumbotron">
-		  <div class="container">
-		    <h1 class="display-4">The world's platform for change</h1>
-		    <p class="lead"><%= display_petition_count %> people taking action.</p>
-		    <%= link_to "Start a petition", logged_in? ? new_user_petition_path(current_user) : signin_path, :class => "btn btn-danger" %>
-		  </div>
-		</div>
-	</div>
-</div>
-<%= render @petitions || "There are no Petitions yet." %>
 
+<%= render "jumbotron" if controller_name != "categories" %>
+
+<%= render @petitions || "There are no Petitions yet." %>
