@@ -41,9 +41,8 @@
 			Categories
 		</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			<a class="dropdown-item" href="#">Action</a>
 			<% cat_list.each do |c| %>
-				<%= link_to c.title, category_path(c), :class => 'dropdown-item' %>
+				<%= link_to "#{c.title} (#{c.petition_count})", category_path(c), :class => 'dropdown-item' %>
 			<% end %>
       </li>
 
