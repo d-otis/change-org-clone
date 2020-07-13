@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       flash[:notice] = []
       flash[:notice] << "Email can't be blank" if user_params[:email].blank?
       flash[:notice] << "Password can't be blank" if user_params[:password].blank?
-      
+      # move to HTML validators
       render :new and return
     else
       @user = User.find_by(email: user_params[:email])
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
         redirect_to dashboard_path
       else
         @user.nil? ? flash[:notice] = "User not found" : flash[:notice] = "Incorrect Password"
-
+        # potential vulnerability here, more general is safer
         render :new
       end
     end
