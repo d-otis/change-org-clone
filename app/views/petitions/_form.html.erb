@@ -13,6 +13,10 @@
 		<%= f.number_field :goal, :class => 'form-control' %>
 	</div>
 	<hr class="my-3">
+  <%= f.fields_for :categories do |cat| %>
+    <%= collection_radio_buttons(:petition, :category_id, @categories, :id, :title) %>
+  <% end %>
+  <hr class="my-3">
 	<%# NESTED ATTRS  %>
 		<%= f.fields_for :signatures, @petition.signatures.build do |sig| %>
 		<h5>Your Signature</h5>
