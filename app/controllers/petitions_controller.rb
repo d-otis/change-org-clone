@@ -2,6 +2,7 @@ class PetitionsController < ApplicationController
 	before_action :set_petition, only: [:show, :edit, :update, :destroy]
 	before_action :require_auth, only: [:edit, :destroy, :update]
 	before_action :require_login
+	before_action :categories, only: [:new, :create, :update, :edit]
 	skip_before_action :require_login, only: [:index, :show, :most_signatures, :goal_met]
 
 	def index
@@ -33,7 +34,6 @@ class PetitionsController < ApplicationController
 	end
 
 	def edit
-		@categories = Category.order(:title => :asc)
 	end
 
 	def update
@@ -47,7 +47,6 @@ class PetitionsController < ApplicationController
 
 	def new
 		@petition = Petition.new
-		@categories = Category.order(:title => :asc)
 	end
 
 	def create
@@ -103,5 +102,9 @@ class PetitionsController < ApplicationController
 
 	def require_auth
 		redirect_to petition_path(@petition), notice: "You can only edit your own petitions!" unless @petition.author == current_user
+	end
+
+	def categories
+		@categories = Category.order(:title => :asc)
 	end
 end
