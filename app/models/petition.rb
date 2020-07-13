@@ -47,6 +47,9 @@ class Petition < ApplicationRecord
 	def self.most_signatures
 		joins(:signatures).group("petitions.id").order(Arel.sql("COUNT(*) DESC"))
 		 # returns an array of petitions even if there's only one 
+		 # refactor this to check for ties and then display 
+		 # all the top ties if applicable, otherwise if == 1
+		 # display one petition
 	end
 
 	def self.goal_met
