@@ -1,5 +1,7 @@
 class Category < ApplicationRecord
-  has_many :petitions 
+  has_many :petitions
+
+  validates :title, :presence => true
 
   def petition_count
   	self.petitions.count
