@@ -87,12 +87,19 @@ RSpec.describe User, type: :model do
 			)
 		}
 
+		let(:animal_rights) {
+			Category.create(
+				:title => "Animal Rights"
+			)
+		}
+
 		let!(:first_petition) {
 			 Petition.create!(
 				:title => "First Title",
 				:description => "Maecenas faucibus mollis interdum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit.",
 				:goal => 10,
-				:author_id => trez.id
+				:author_id => trez.id,
+				:category_id => animal_rights.id
 			)
 		}
 
@@ -101,7 +108,8 @@ RSpec.describe User, type: :model do
 				:title => "Second Title",
 				:description => "Maecenas faucibus mollis interdum.",
 				:goal => 15,
-				:author_id => trez.id
+				:author_id => trez.id,
+				:category_id => animal_rights.id
 			)
 		}
 

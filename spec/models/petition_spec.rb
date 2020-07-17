@@ -28,12 +28,19 @@ RSpec.describe Petition, type: :model do
     )
   }
 
+  let(:social_justice) {
+    Category.create(
+      :title => "Social Justice Issues"
+    )
+  }
+
   let(:valid_attrs) do 
     {
       :author_id => peaches.id,
       :title => "First Petition Title",
       :description => "First Petition Description",
-      :goal => 1
+      :goal => 1,
+      :category_id => social_justice.id
     }
    end
 
@@ -90,6 +97,11 @@ RSpec.describe Petition, type: :model do
     it "responds to author/author_id" do
       expect(Petition.new).to respond_to(:author)
       expect(Petition.new).to respond_to(:author_id)
+    end
+
+    it "responds to category/category_id" do
+      expect(Petition.new).to respond_to(:category)
+      expect(Petition.new).to respond_to(:category_id)
     end
   end
 
