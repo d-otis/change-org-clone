@@ -1,5 +1,8 @@
 # Change.org Clone
 
+## Live Demo
+[change-clone-demo.herokuapp.com](https://change-clone-demo.herokuapp.com)
+
 Inspired by the present moment I chose to model my domain on popular petition websites like Change.org and MoveOn.org
 
 A user can join manually via the form or through an OAuth strategy via Facebook.
