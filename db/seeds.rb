@@ -55,7 +55,7 @@ end
 def make_signatures(num)
 
   num.times do
-    petition = Petition.find(rand(1..Petition.count)
+    petition = Petition.find(rand(1..Petition.count))
     # Need to randomly select a user and only make signature join if their user object is already in the join
     user = User.find(rand(1..User.count))
     # query DB for Signature where user_id and petition_id
