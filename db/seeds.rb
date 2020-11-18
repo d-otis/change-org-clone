@@ -101,4 +101,3 @@ mega_seed(num_users, num_signatures)
 
 pookie = User.create(name: "Pookie McGillicutty", email: "pookie@gmail.com", password: pwd, :password_confirmation => pwd)
 dan = User.create(name: "Dan Foley", email: "dan@dan-foley.biz", password: pwd, :password_confirmation => pwd)
-pookie.authored_petitions.create(title: "End Scooter McBooberson’s Reign of Terror", description: "She stinks!", goal: 5)
