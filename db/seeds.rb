@@ -6,12 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+Category.destroy_all
 
 def mega_seed(users, signatures)
   puts ""
   puts "Beginning Seed..."
   puts ""
 
+  make_categories
   make_users(users)
   make_petitions
   make_signatures(signatures)
@@ -40,7 +43,8 @@ def make_petitions
       Petition.create(
         :title => Faker::Lorem.sentence(word_count: rand(5..11)), 
         :description => LoremIpsumText::multiple_para(rand(10..30)).join("\r\n\r\n"),
-        :author_id => p, 
+        :author_id => p,
+        :category_id => rand(Category.first.id..Category.last.id), 
         :goal => rand(12..20))
     end
   end
@@ -55,9 +59,9 @@ end
 def make_signatures(num)
 
   num.times do
-    petition = Petition.find(rand(1..Petition.count))
+    petition = Petition.find(rand(Petition.first.id..Petition.last.id))
     # Need to randomly select a user and only make signature join if their user object is already in the join
-    user = User.find(rand(1..User.count))
+    user = User.find(rand(User.first.id..User.last.id))
     # query DB for Signature where user_id and petition_id
     if Signature.where(petition: petition, user: user).empty?
       petition.signatures.create(
@@ -98,6 +102,3 @@ mega_seed(num_users, num_signatures)
 pookie = User.create(name: "Pookie McGillicutty", email: "pookie@gmail.com", password: pwd, :password_confirmation => pwd)
 dan = User.create(name: "Dan Foley", email: "dan@dan-foley.biz", password: pwd, :password_confirmation => pwd)
 pookie.authored_petitions.create(title: "End Scooter McBooberson’s Reign of Terror", description: "She stinks!", goal: 5)
-
-make_categories
-assign_categories
