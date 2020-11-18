@@ -2,13 +2,14 @@
 
 [Live Demo](https://change-clone-demo.herokuapp.com)
 
+## Overview
 Inspired by the present moment I chose to model my domain on popular petition websites like Change.org and MoveOn.org
 
 A user can join manually via the form or through an OAuth strategy via Facebook.
 
 From onboarding they can create petitions and sign the authored_petitions of other users. Signatures act as joins between users and petitions with extra fields of a message and boolean that determines whether your name and message are displayed in association with a petition that you’ve signed.
 
-# Built With
+## Built With
 - Ruby on Rails (RESTful routes)
 - PostgreSQL
 - [Facebook OmniAuth Gem](https://github.com/simi/omniauth-facebook)
