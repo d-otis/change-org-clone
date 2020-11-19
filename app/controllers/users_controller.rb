@@ -38,6 +38,7 @@ class UsersController < ApplicationController
       @user = current_user
     else
       redirect_to "/signin"
+    end
   end
 
   def update
