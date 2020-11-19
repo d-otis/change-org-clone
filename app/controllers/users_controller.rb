@@ -34,7 +34,10 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    @user = current_user
+    if current_user
+      @user = current_user
+    else
+      redirect_to "/signin"
   end
 
   def update
