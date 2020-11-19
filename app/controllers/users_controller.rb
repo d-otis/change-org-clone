@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     if current_user
       @user = current_user
     else
-      redirect_to "/signin"
+      redirect_to "/signin", notice: "You must be signed in to access the Dashboard."
     end
   end
 
