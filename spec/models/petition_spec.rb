@@ -149,7 +149,7 @@ RSpec.describe Petition, type: :model do
   end
 
   context "custom class methods" do
-    xit ".most_signatures returns the petition with the most signatures" do
+    it ".most_signatures returns the petition with the most signatures" do
       second_petition
       saved_petition.signatures << first_signature
       saved_petition.signatures << second_signature
