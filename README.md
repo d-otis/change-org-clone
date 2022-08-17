@@ -1,7 +1,7 @@
 # Change.org Clone
 
-[Live Demo](https://change-clone-demo.herokuapp.com)
-[Blog Post](https://danfoley.dev/ruby-on-rails-change-org/)
+- [Live Demo](https://change-clone-demo.herokuapp.com)
+- [Blog Post](https://danfoley.dev/ruby-on-rails-change-org/)
 
 ## Overview
 Inspired by the present moment I chose to model my domain on popular petition websites like Change.org and MoveOn.org
